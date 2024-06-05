@@ -30,6 +30,18 @@ html {
     padding: 0;
   }
   
+  .logo-button{
+    position: relative;
+    display: flex;
+    margin-top: 0px;
+    margin-left: 0px;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+  
+  }
+  
   .center {
     display: block;
     margin-left: auto;
@@ -51,18 +63,6 @@ html {
     align-items: center;
   }
   
-  .logo-button{
-    position: relative;
-    display: flex;
-    margin-top: 0px;
-    margin-left: 0px;
-    background-color: transparent;
-    border: none;
-    text-decoration: none;
-    cursor: pointer;
-  
-  }
-  
   #Images {
     display: flex;
     justify-content: space-between;
@@ -70,10 +70,10 @@ html {
   }
   
   img[alt="Farmbook"] {
-    width: 71%;
+    width: 70%;
     position: relative;
     display: flex;
-    margin-top: 25px;
+    margin-top: 23px;
     margin-left: 20px;
     padding: 5px;
     margin-right: 10px;
