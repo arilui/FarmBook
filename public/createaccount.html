@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Farmbook Replit</title>
-  <link href="createaccount.css" rel="stylesheet" type="text/css" />
-  <script src="createaccount.css"></script>
+  <link rel="stylesheet" type="text/css" href="createaccount.css">
+  <script src="createaccount.js" type = "module"></script>
 </head>
 
 <body>
@@ -31,17 +31,17 @@
           <div style="text-align: center;">
             <img src="images/login-icon-cropped.png" alt="default user image" width="30%" class="user-img">
             <br>
-            <input type="text" id="email" name="email" placeholder="Email" required>
+            <input type="text" id="email" name="email" placeholder="Email" required autocomplete="email">
             <br>
-            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="text" id="username" name="username" placeholder="Username" required autocomplete="off">
             <br>
-            <input type="password" id="password" name="password" placeholder="Password" required>
+            <input type="password" id="password" name="password" placeholder="Password" required autocomplete="current-password">
             <br>
 
-            <input type="radio" id="seller" name="account-type" value="Seller">
-            <label for="seller">Seller</label><br>
-            <input type="radio" id="buyer" name="account-type" value="Buyer" checked>
-            <label for="buyer">Buyer</label><br>
+            <label>
+            <input type="radio" id="seller" name="account-type" value="seller"> Seller</label><br>
+            <label>
+            <input type="radio" id="buyer" name="account-type" value="buyer" checked> Buyer</label><br>
             <button>Create account</button>
           </div>
         </form>
@@ -49,8 +49,6 @@
         <p id="create-account-error" class="error-message"> </p>
       </section>
     </section>
-
-
 </body>
 
 </html>
