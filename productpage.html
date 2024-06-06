@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Farmbook Product Page</title>
+  <link href="productpage.css" rel="stylesheet" type="text/css" />
+  <script src="productpage.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <img src="images/Web-page-transparent-cropped.png" alt="Farmbook logo" id="farmbook-logo">
+      <input type="text" id="search-term" placeholder="Search...">
+      <button id="search-button">Search</button>
+      <div id="cart-container" class="hidden">
+        <img src="images/shopping-cart-icon.png" alt="shopping cart">
+        <button id="cart-button">Cart</button>
+      </div>
+      <div id="login-container" class="nav-bar">
+        <img src="images/login-icon-cropped.png" alt="login icon" id="login-icon">
+        <!-- <button id="login-button">Log in</button> -->
+      </div>
+    </nav>
+  </header>
+  <section id="product-page" class="hidden">
+    <button id="product-back-button" class="back-button">Back to item catalog</button>
+    <div class="flex-container">
+      <img src="pothos.png" alt="image" class="product" id="product-img">
+      <section id="product-details">
+        <h3 id="product-name"></h3>
+        <p id="product-description"></p>
+        <p id="product-price"></p>
+      </section>
+    </div>
+    <form id="add-cart">
+      <label for="item-quantity">Quantity:</label>
+      <input type="number" id="item-quantity" name="quantity" min="1" placeholder="1">
+      <button id="add-button">Add to cart</button>
+    </form>
+    <p id="product-page-message"></p>
+  </section>
+</body>
+
+</html>
