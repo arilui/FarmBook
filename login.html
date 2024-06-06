@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Farmbook Replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div id="Images">
+        <img src="images/farmbook-logo-rectangle-transparent.png" alt="Farmbook" width="35%">
+        <img src="images/shopping-cart-icon.png" alt="Cart" width="35%">
+      </div>
+      <div id="search">
+        <input type="text" placeholder="Search..">
+        <button id="search_button" onclick="search_button()">Search</button>
+      </div>
+      <hr>
+    </nav>
+  </header>
+  <section id="general-home-page">
+  </section>
+  <br>
+
+  <section id="seller-home-page" class="hidden">
+
+  </section>
+  <br>
+
+  <section id="login-page" class="hidden">
+    <button id="login-back-button" class="back-button">Back</button>
+    <section id="login-page-elements">
+      <form class="center">
+        <div style="text-align: center;">
+          <img src="images/login-icon-cropped.png" alt="default user image" width="30%" class="user-img">
+          <br>
+          <input type="text" id="login-username" name="username" placeholder="Username" required>
+          <br>
+          <input type="password" id="login-password" name="password" placeholder="Password" required>
+          <br>
+          <button>Log in</button>
+      </form>
+      <p id="login-error" class="error-message"> </p>
+      <p>Need to create an account?</p>
+      <button id="create-account-button">Create account</button>
+      </div>
+    </section </section>
+    <br>
+
+    <section id="create-account" class="hidden">
+      <button id="create-account-button" class="back-button">Back</button>
+      <section id="create-account-page-elements">
+        <form class="center">
+          <div style="text-align: center;">
+            <img src="images/login-icon-cropped.png" alt="default user image" width="30%" class="user-img">
+            <br>
+            <input type="text" id="email" name="email" placeholder="Email" required>
+            <br>
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <br>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <br>
+
+            <input type="radio" id="seller" name="account-type" value="Seller">
+            <label for="seller">Seller</label><br>
+            <input type="radio" id="buyer" name="account-type" value="Buyer" checked>
+            <label for="buyer">Buyer</label><br>
+            <button>Create account</button>
+          </div>
+        </form>
+
+        <p id="create-account-error" class="error-message"> </p>
+      </section>
+    </section>
+
+
+</body>
+
+</html>

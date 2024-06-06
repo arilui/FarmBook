@@ -1,0 +1,49 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+header {
+  background-color: #DCF9E0;
+  height: 10%;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+body {
+  background-color: #F7D2B3;
+}
+
+#farmbook-logo {
+  width: 89px;
+  height: 32px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+#search-term {
+  height: 20px;
+  margin-top: 3px;
+}
+
+#search-button {
+  height: 25px;
+  margin-top: 8px;
+  margin-bottom: 5px;
+}
+
+#login-icon {
+  height: 30px;
+  margin-top: 6px;
+  text-align: right;
+}
+
+.hidden {
+  display: none;
+}
