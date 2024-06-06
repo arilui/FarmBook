@@ -13,6 +13,7 @@
 
   function goToCartPage() {
     window.location.href = "file:///C:/Users/hanna/Documents/CS%20410/Final%20Project/FarmBook/FarmBook/public/cartpage.html";
+
   }
 
   function goToLoginPage() {

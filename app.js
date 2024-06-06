@@ -37,5 +37,5 @@ app.get('/posts', function (req, res) {
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT);
