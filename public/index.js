@@ -1,31 +1,27 @@
-
 //slide starting index
 let slideIndex = {
 'carousel-1':0,
 'carousel-2':0
 };
-//initialize database
-async function main(){
-  const uri =   "mongodb+srv://dbUser:passw0rd@farmbook.rsj9viv.mongodb.net/retryWrites=true&w=majority&appName=FarmBook"
-  const client = new MongoClient(uri);
-  try{
-    await client.connect();
-    await listDatabases(client);
-  }
-  catch(e){
-    console.error(e);
-  }
-  finally{
-    await client.close();
-  }
-}
+const { connectToDatabase, client } = require('./dbConnection');
 
-//get a list of all databases
-async function listDatabases(client){
-  databasesList = await client.db().admin().listDatabases();
-  console.log("Databases:")
+async function listDatabases() {
+  const databasesList = await client.db().admin().listDatabases();
+  console.log("Databases:");
   databasesList.databases.forEach(db => console.log(`- ${db.name}`));
 }
+
+async function main() {
+  await connectToDatabase();
+  await listDatabases();
+  // Perform other database operations here
+
+  // Close the connection when done
+  await client.close();
+}
+
+main().catch(console.error);
+
 //naviaget pages
 document.getElementById("home-page").addEventListener('click',function(){
   window.location.href="homepage.html";
@@ -62,3 +58,34 @@ document.addEventListener('DOMContentLoaded', () => {
   moveSlide(0, 'carousel-1');
   moveSlide(0, 'carousel-2');
 });
+
+/*
+function login(){
+  //get username and password
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
+  //check if username and password match
+  if(username == "admin" && password == "password"){
+    //if they do, redirect to the seller home page
+    window.location.href = "seller-home-page.html";
+  }
+  else{
+    //if they don't, display an error message
+    document.getElementById("login-error").innerHTML = "Invalid username or password";
+  }
+
+}
+
+function createAccount(){
+  //get username and password
+  let username = document.getElementById("username").value;
+  let password = document.getElementById("password").value;
+
+  //write to database
+
+  //display success message or error message
+
+  //redirect to login page
+
+}**/
+
