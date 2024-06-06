@@ -1,5 +1,16 @@
 {
+  "name": "farmbook",
+  "version": "1.0.0",
+  "description": "Work breakdown:\r \t>Database and connecting JavaScript, partial index.html JavaScript - Paige\r \t>Product page and connecting JavaScript - Hannah\r \t>Login/Seller page and connecting JavaScript - Mariana\r \t>Index page and connected JavaScript - Hawraa",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "mongodb": "^6.7.0"
+    "express": "^4.19.2",
+    "mongodb": "^6.7.0",
+    "multer": "^1.4.5-lts.1"
   }
 }
