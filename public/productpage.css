@@ -40,6 +40,12 @@ body {
   margin-right: 15px;
 }
 
+.image-button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
 #product-page {
   display: flex;
   flex-direction: column;
@@ -51,6 +57,10 @@ body {
   border-style: solid;
   border-color: black;
   border-radius: 10px;
+}
+
+.flipped {
+  transform: rotate(180deg);
 }
 
 /* .hidden {
