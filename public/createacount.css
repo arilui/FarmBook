@@ -1,87 +1,86 @@
 html {
-    height: 100%;
-    width: 100%;
-  }
-  
-  header {
-    background-color: #DCF9E0;
-    height: 150px;
-    display: flex;
-  
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: #F7D2B3;
-  }
-  
-  h1 {
-    color: black;
-  }
-  
-  p {
-    color: black;
-  }
-  
-  body,
-  header {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .logo-button{
-    position: relative;
-    display: flex;
-    margin-top: 0px;
-    margin-left: 0px;
-    background-color: transparent;
-    border: none;
-    text-decoration: none;
-    cursor: pointer;
-  
-  }
-  
-  .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
-  
-  .corners {
-    border-radius: 25px;
-    border: 2px solid #73AD21;
-    padding: 20px;
-    width: 200px;
-    height: 150px;
-  }
-  
-  nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  #Images {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  img[alt="Farmbook"] {
-    width: 70%;
-    position: relative;
-    display: flex;
-    margin-top: 23px;
-    margin-left: 20px;
-    padding: 5px;
-    margin-right: 10px;
-  }
-  
-  hr.solid {
-    border-top: 3px solid #000;
-    margin-top: -40px;
-  }
-  
-  
+  height: 100%;
+  width: 100%;
+}
+
+header {
+  background-color: #DCF9E0;
+  height: 150px;
+  display: flex;
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F7D2B3;
+}
+
+h1 {
+  color: black;
+}
+
+p {
+  color: black;
+}
+
+body,
+header {
+  margin: 0;
+  padding: 0;
+}
+
+.logo-button{
+  position: relative;
+  display: flex;
+  margin-top: 0px;
+  margin-left: 0px;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.corners {
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#Images {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+img[alt="Farmbook"] {
+  width: 70%;
+  position: relative;
+  display: flex;
+  margin-top: 23px;
+  margin-left: 20px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+hr.solid {
+  border-top: 3px solid #000;
+  margin-top: -40px;
+}
+
