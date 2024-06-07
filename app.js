@@ -26,24 +26,6 @@ app.get('/helloworld', function (req, res) {
   res.type("text").send("Hello World!");
 });
 
-/**
- * Establishes a database connection to the database and returns the database object.
- * Any errors that occur should be caught in the function that calls this one.
- * @returns { MongoClient, ServerApiVersion } - The database object for the connection.
- */
-async function getDBConnection() {
-  const db = await client.connect();
-
-  return db;
-}
-
-
-
-
-app.use(express.static('public'));
-const PORT = process.env.PORT || 8000;
-app.listen(PORT);
-
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -57,3 +39,18 @@ async function run() {
   }
 }
 run().catch(console.dir);
+
+/**
+ * Establishes a database connection to the database and returns the database object.
+ * Any errors that occur should be caught in the function that calls this one.
+ * @returns { MongoClient, ServerApiVersion } - The database object for the connection.
+ */
+async function getDBConnection() {
+  const db = await client.connect();
+
+  return db;
+}
+
+app.use(express.static('public'));
+const PORT = process.env.PORT || 8000;
+app.listen(PORT);
