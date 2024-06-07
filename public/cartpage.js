@@ -7,6 +7,7 @@
     function init(){
         id(farmbook-logo).addEventListener("click", goToHomePage);
         id(login-button).addEventListener("click", goToLoginPage);
+        id(cart-button).addEventListener("click", refreshPage);
     }
 
     function goToHomePage(){
@@ -16,4 +17,13 @@
     function goToLoginPage(){
         window.location.href = "C:\Users\plui0\Documents\GitHub\FarmBook\public\login.html";
     }
+
+    function refreshPage(){
+        window.location.href = "public\cartpage.js";
+    }
+
+    function id(idName) {
+        return document.getElementById(idName);
+      }
+    
 })
