@@ -1,25 +1,65 @@
 //slide starting index
 let slideIndex = {
 'carousel-1':0,
-'carousel-2':0
+'carousel-2':0,
+'carousel-3':0
 };
-const { connectToDatabase, client } = require('./dbConnection');
 
-async function listDatabases() {
-  const databasesList = await client.db().admin().listDatabases();
-  console.log("Databases:");
-  databasesList.databases.forEach(db => console.log(`- ${db.name}`));
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const response = await fetch('/products');
+    const products = await response.json();
+
+    //const carousel1Slide = document.getElementById('carousel-1-slide');
+    //const carousel2Slide = document.getElementById('carousel-2-slide');
+    const carousel3Slide = document.getElementById('carousel-3-slide');
+
+    products.forEach(product => {
+      const productItem = createProductItem(product);
+      carousel3Slide.appendChild(productItem);
+
+      //const productItemClone = productItem.cloneNode(true);
+      //carousel2Slide.appendChild(productItemClone);
+    });
+
+    initializeCarousels();
+  } catch (error) {
+    console.error('Error fetching product data:', error);
+  }
+});
+
+function createProductItem(product) {
+  const productItem = document.createElement('div');
+  productItem.classList.add('product-item');
+
+  const productLink = document.createElement('a');
+  productLink.href = "https://www.w3schools.com"; // Replace with actual product link if available
+
+  const productImage = document.createElement('img');
+  productImage.classList.add('product-image');
+  productImage.src = product.image;
+  productImage.alt = `Image of ${product.name}`;
+
+  const productDetailsName = document.createElement('div');
+  productDetailsName.classList.add('product-details');
+  productDetailsName.textContent = `Name: ${product.name}`;
+
+  const productDetailsPrice = document.createElement('div');
+  productDetailsPrice.classList.add('product-details');
+  productDetailsPrice.textContent = `Price: ${product.price} $`;
+
+  const productDetailsDescription = document.createElement('div');
+  productDetailsDescription.classList.add('product-details');
+  productDetailsDescription.textContent = product.description;
+
+ // productLink.appendChild(productImage);
+ // productItem.appendChild(productLink);
+  productItem.appendChild(productDetailsName);
+  productItem.appendChild(productDetailsPrice);
+  productItem.appendChild(productDetailsDescription);
+
+  return productItem;
 }
-
-async function main() {
-  await connectToDatabase();
-  await listDatabases();
-  // Perform other database operations here
-
-  // Close the connection when done
-  await client.close();
-}
-
 main().catch(console.error);
 
 //naviaget pages
@@ -57,35 +97,5 @@ function moveSlide(n, carouselId) {
 document.addEventListener('DOMContentLoaded', () => {
   moveSlide(0, 'carousel-1');
   moveSlide(0, 'carousel-2');
+  moveSlide(0, 'carousel-3');
 });
-
-/*
-function login(){
-  //get username and password
-  let username = document.getElementById("username").value;
-  let password = document.getElementById("password").value;
-  //check if username and password match
-  if(username == "admin" && password == "password"){
-    //if they do, redirect to the seller home page
-    window.location.href = "seller-home-page.html";
-  }
-  else{
-    //if they don't, display an error message
-    document.getElementById("login-error").innerHTML = "Invalid username or password";
-  }
-
-}
-
-function createAccount(){
-  //get username and password
-  let username = document.getElementById("username").value;
-  let password = document.getElementById("password").value;
-
-  //write to database
-
-  //display success message or error message
-
-  //redirect to login page
-
-}**/
-

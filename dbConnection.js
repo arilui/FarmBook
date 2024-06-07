@@ -1,8 +1,8 @@
-//initialize database
+const express = require('express');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://dbUser:passw0rd@farmbook.rsj9viv.mongodb.net/?retryWrites=true&w=majority&appName=FarmBook";
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+// MongoDB connection setup
+const uri = "mongodb+srv://dbUser:passw0rd@farmbook.rsj9viv.mongodb.net/?retryWrites=true&w=majority&appName=FarmBook";
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -11,16 +11,49 @@ const client = new MongoClient(uri, {
   }
 });
 
-async function run() {
+async function connectToDatabase() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
+    console.log("Connected to MongoDB");
+  } catch (e) {
+    console.error(e);
   }
 }
-run().catch(console.dir);
+
+// Express setup
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+app.use(express.static('public')); // Serve static files from the 'public' folder
+
+// Endpoint to fetch products from MongoDB
+// app.get('/Products', async (req, res) => {
+//   try {
+//     await connectToDatabase();
+//     const db = client.db('FarmBook'); // Replace with your database name
+//     const products = await db.collection('Product').find({}).toArray();
+//     res.json(products);
+//   } catch (e) {
+//     res.status(500).send(e);
+//   }
+// });
+app.get('/products', async(req, res) => {
+  let client = await connectToMongo();
+  try{
+    let database = client.db('FarmBook');
+    let collection = database.collection('Product');
+    let products = await collection.find().toArray();
+    res.status(SUCCESS_STATUS_CODE).json(products);
+  } catch (err) {
+    res.status(SERVER_SIDE_ERROR_STATUS_CODE).json({message: err.message});
+  } finally {
+    client.close();
+    console.log("close");
+  }
+})
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
