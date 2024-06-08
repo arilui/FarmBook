@@ -20,8 +20,6 @@ body {
 
 }
 
-
-
 .navigation-board a:hover {
   background-color: #9decd4;
 }
@@ -69,14 +67,20 @@ body {
 .product-details{
   background-color:  #DCF9E0;
 }
-
+.product-image {
+  width: 200px; /* Set the desired width */
+  height: 150px; /* Set the desired height */
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+  border-radius: 20px; /* Optional: add border-radius for rounded corners */
+}
 .carousel{
   position: relative;
   width: 70%;
   max-width: 1200px;
   margin: auto;
   overflow: hidden;
-  padding: 10px 0; 
+  /** makes it so there is enough space for the buttons**/
+  padding: 15px 50px; 
 }
 .carousel-container {
   display: flex;
@@ -89,12 +93,13 @@ body {
   transition: transform 0.5s ease;
 }
 .product-item {
+  flex: 0 0 auto;
   min-width: 25%;
   box-sizing: border-box;
   padding: 10px;
   text-align: center;
 }
-/**makes the button see through**/
+/** **/
 .carousel-button {
   position: absolute;
   top: 50%;
@@ -102,9 +107,9 @@ body {
   background-color:#efb631a5;
   border: none;
   color: white;
-  padding: 20px;
+  padding: 10px;
   cursor:auto;
-  z-index: 10;
+  z-index: 1;
 }
 .product-image {
   width: 100%;
@@ -112,8 +117,8 @@ body {
 }
 /**trying to make the buttons be around the items**/
 .carousel-button.next {
-  right: 0px;
+  right: 20px;
 }
 .carousel-button.prev{
-  left:0px;
+  left: 20px;
 }

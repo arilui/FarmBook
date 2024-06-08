@@ -7,6 +7,7 @@ let slideIndex = {
 
 document.addEventListener('DOMContentLoaded', async () => {
   try {
+
     const response = await fetch('/products');
     const products = await response.json();
 
@@ -52,23 +53,22 @@ function createProductItem(product) {
   productDetailsDescription.classList.add('product-details');
   productDetailsDescription.textContent = product.description;
 
- // productLink.appendChild(productImage);
- // productItem.appendChild(productLink);
+  productLink.appendChild(productImage);
+  productItem.appendChild(productLink);
   productItem.appendChild(productDetailsName);
   productItem.appendChild(productDetailsPrice);
   productItem.appendChild(productDetailsDescription);
 
   return productItem;
 }
-main().catch(console.error);
 
 //naviaget pages
 document.getElementById("home-page").addEventListener('click',function(){
-  window.location.href="homepage.html";
+  window.location.href="index.html";
 });
 //naviaget pages
 document.getElementById("log-in").addEventListener('click',function(){
-  window.location.href="index.html";
+  window.location.href="login.html";
 });
 //naviaget pages
 document.getElementById("product-image").addEventListener('click',function(){
@@ -93,9 +93,8 @@ function moveSlide(n, carouselId) {
   slideContainer.style.transform = `translateX(${-slideIndex[carouselId] * slides[0].offsetWidth}px)`;
 }
 
-// Initialize the carousels
-document.addEventListener('DOMContentLoaded', () => {
+function initializeCarousels() {
   moveSlide(0, 'carousel-1');
   moveSlide(0, 'carousel-2');
   moveSlide(0, 'carousel-3');
-});
+}

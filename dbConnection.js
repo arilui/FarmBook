@@ -11,15 +11,6 @@ const client = new MongoClient(uri, {
   }
 });
 
-async function connectToDatabase() {
-  try {
-    await client.connect();
-    console.log("Connected to MongoDB");
-  } catch (e) {
-    console.error(e);
-  }
-}
-
 // Express setup
 const app = express();
 const port = 3000;
@@ -27,26 +18,29 @@ const port = 3000;
 app.use(express.json());
 app.use(express.static('public')); // Serve static files from the 'public' folder
 
-// Endpoint to fetch products from MongoDB
-// app.get('/Products', async (req, res) => {
-//   try {
-//     await connectToDatabase();
-//     const db = client.db('FarmBook'); // Replace with your database name
-//     const products = await db.collection('Product').find({}).toArray();
-//     res.json(products);
-//   } catch (e) {
-//     res.status(500).send(e);
-//   }
-// });
+async function connectToMongo() {
+  const client = new MongoClient(uri, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    }
+  });
+
+  await client.connect();
+  console.log("connected");
+  return client;
+}
+
 app.get('/products', async(req, res) => {
   let client = await connectToMongo();
   try{
     let database = client.db('FarmBook');
     let collection = database.collection('Product');
     let products = await collection.find().toArray();
-    res.status(SUCCESS_STATUS_CODE).json(products);
+    res.status(200).json(products);
   } catch (err) {
-    res.status(SERVER_SIDE_ERROR_STATUS_CODE).json({message: err.message});
+    res.status(500).json({message: err.message});
   } finally {
     client.close();
     console.log("close");
