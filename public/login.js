@@ -49,8 +49,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 window.location.href = "index.html";
             } else {
                 console.error('Login failed:', response.statusText);
+                // Reset form fields
+                document.getElementById("login-username").value = "";
+                document.getElementById("login-password").value = "";
                 // Display an error message to the user
-                alert('Login failed. Please check your username and password.');
+                alert('Login failed. Please check your username and password and try again.');
             }
         } catch (error) {
             console.error('Error during login:', error);
