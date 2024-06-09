@@ -17,8 +17,13 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = "createaccount.html";
     }
 
+    function authenticateUser(){
+        console.log("Authenticating...");
+
+    }
+
     // Function to handle login form submission
-    function handleLoginFormSubmission(event) {
+    async function handleLoginFormSubmission(event) {
         console.log("Login form submitted");
         event.preventDefault(); // Prevent the form from submitting normally
         
@@ -26,15 +31,32 @@ document.addEventListener("DOMContentLoaded", function() {
         var username = document.getElementById("login-username").value;
         var password = document.getElementById("login-password").value;
         
-        // Example: Display the form data in the console
-        console.log("Username: " + username);
-        console.log("Password: " + password);
-
-        // Here you can add logic to validate the username and password
-        // For simplicity, let's just log a message indicating successful login
-        console.log("Login successful!");
-        
-        // Redirect to another page or perform further actions after successful login
+        // Send login request to server
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                // mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({username, password })
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data.message);
+                // Redirect to index page after successful login
+                window.location.href = "index.html";
+            } else {
+                console.error('Login failed:', response.statusText);
+                // Display an error message to the user
+                alert('Login failed. Please check your username and password.');
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            // Display an error message to the user
+            alert('An error occurred during login. Please try again later.');
+        }
     }
 
     // Attach event listeners
