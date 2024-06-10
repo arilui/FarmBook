@@ -1,13 +1,13 @@
 "use strict";
 
-const express = require('express');//
-const app = express();//
+const express = require('express');
+const app = express();
 
 const multer = require('multer');
 app.use(multer().none());
 
 app.use(express.urlencoded({extended: true}));
-app.use(express.json());//
+app.use(express.json());
 
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -16,7 +16,7 @@ app.use(express.json());//
 //   next();
 // })
 
-const { MongoClient, ServerApiVersion } = require('mongodb');//
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = "mongodb+srv://dbUser:passw0rd@farmbook.rsj9viv.mongodb.net/?retryWrites=true&w=majority&appName=FarmBook";
 
 const SERVER_SIDE_ERROR_STATUS_CODE = 500;
@@ -41,28 +41,44 @@ async function connectToMongo() {
   return client;
 }
 
-
 // returns a JSON of all of each product's information
-app.get('/helloworld', function (req, res) {
-  console.log("test test test");
-  res.type("text").send("Hello World!");
-});
-
 app.get('/products', async(req, res) => {
   let client = await connectToMongo();
   try{
     let database = client.db('FarmBook');
     let collection = database.collection('Product');
     let products = await collection.find().toArray();
-    res.status(200).json(products);
+    res.status(SUCCESS_STATUS_CODE).json(products);
   } catch (err) {
-    res.status(500).json({message: err.message});
+    res.status(SERVER_SIDE_ERROR_STATUS_CODE).json({message: err.message});
   } finally {
     client.close();
     console.log("close");
   }
 })
 
+// returns a JSON of the given product's information
+app.get('/products/:id', async(req, res) => {
+  let client = await connectToMongo();
+  try{
+    let database = client.db('FarmBook');
+    let collection = database.collection('Product');
+    let id = new ObjectId(req.params);
+    let productInfo = await collection.findOne({_id: id});
+    if (productInfo) {
+      res.status(SUCCESS_STATUS_CODE).json({exists: true, productInfo});
+    } else {
+      res.status(SUCCESS_STATUS_CODE).json({exists: false});
+    }
+  } catch (err) {
+    res.status(SERVER_SIDE_ERROR_STATUS_CODE).json({message: err.message});
+  } finally {
+    client.close();
+    console.log("close");
+  }
+})
+
+// checks to see if the username and password are in the database
 app.post('/login', async (req, res) => {
   // Connecting with MongoDB
   let client = await connectToMongo();
@@ -72,14 +88,14 @@ app.post('/login', async (req, res) => {
 
   console.log('Username: ' + username);
   console.log('Password: ' + password);
-  
+
   try {
     // Connecting with user collection
     let database = client.db('FarmBook');
     let collection = database.collection('User');
 
     let user = await collection.findOne({email: username});
-    
+
     if (user) {
       // Respond with user data including isSeller if authentication succeeds
       if(password === user.password){
@@ -102,10 +118,8 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
-
 let userCount = 6; // Initialize userCount to 6
-
+// adds the given new user's information to the database
 app.post('/createaccount', async (req, res) => {
   const { email, password, isSeller } = req.body;
   let client = await connectToMongo();
@@ -124,7 +138,7 @@ app.post('/createaccount', async (req, res) => {
 
     // Insert the new user into the database with the incremented userCount
     await collection.insertOne({ userID: userCount, email, password, isSeller });
-    
+
     // Respond with a success message
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
@@ -136,27 +150,6 @@ app.post('/createaccount', async (req, res) => {
     console.log("close");
   }
 });
-
-
-
-
-
-
-
-
-// async function run() {
-//   try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-//     // Send a ping to confirm a successful connection
-//     await client.db("admin").command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
-//   }
-// }
-// run().catch(console.dir);
 
 app.use(express.static('public'));
 const PORT = process.env.PORT || 8000;
