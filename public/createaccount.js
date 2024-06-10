@@ -1,30 +1,3 @@
-// import { MongoClient, ServerApiVersion } from 'mongodb';
-// const uri = "mongodb+srv://dbUser:passw0rd@farmbook.rsj9viv.mongodb.net/?retryWrites=true&w=majority&appName=FarmBook";
-
-// // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-// const client = new MongoClient(uri, {
-//   serverApi: {
-//     version: ServerApiVersion.v1,
-//     strict: true,
-//     deprecationErrors: true,
-//   }
-// });
-
-// async function run() {
-//   try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-//     // Send a ping to confirm a successful connection
-//     await client.db('FarmBook').command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
-//   }
-// }
-// run().catch(console.dir);
-
-
 document.addEventListener("DOMContentLoaded", function() {
     // Function to redirect to index page when logo button is clicked
     function redirectToIndexPage() {
@@ -38,22 +11,21 @@ document.addEventListener("DOMContentLoaded", function() {
         window.history.back();
     }
 
-    let selectedOption = null;
+    let isSeller = false; // Initialize isSeller to false
     
     const seller = document.querySelector('#seller');
-    seller.addEventListener('change', ()=> {
-      
-        selectedOption = seller.checked;
-      
+    seller.addEventListener('change', () => {
+        isSeller = seller.checked; // Set isSeller to true if seller checkbox is checked
     });
   
     const buyer = document.querySelector('#buyer');
-    buyer.addEventListener('change', ()=> {
-      
-        selectedOption = !buyer.checked;
-      
+    buyer.addEventListener('change', () => {
+        isSeller = !buyer.checked; // Set isSeller to false if buyer checkbox is checked
     });
 
+    // Function to handle form submission
+    // Function to handle form submission
+    // Function to handle form submission
     // Function to handle form submission
     async function handleFormSubmission(event) {
         console.log("Form submitted");
@@ -61,34 +33,51 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Retrieve form data
         var email = document.getElementById("email").value;
-        var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
         
-      
+        // Determine the value of isSeller based on the checkbox selection
+        var isSeller = document.getElementById("seller").checked;
+
         // Example: Display the form data in the console
         console.log("Email: " + email);
-        console.log("Username: " + username);
         console.log("Password: " + password);
-        console.log("Account Type: " + (selectedOption ? 'Seller' : 'Buyer'));
+        console.log("Is Seller: " + isSeller);
 
-        var userCount = 7;
-        // Here send the form data to server using AJAX or fetch()
-        try{
-            const database = client.db('FarmBook');
-            const collection = database.collection('User');
-            const doc = {UserID : userCount, email : email, password : password, iSeller : selectedOption};
+        // Send the form data to server using fetch
+        const response = await fetch('/createaccount', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password, isSeller })
+        });
 
-            await collection.insertOne(doc);
-
-            userCount++;
-            collection.insertOne(doc);
-            // Reset the form
-            document.querySelector(".center").reset();
-        } catch(error){
-            console.error("Error inserting document into MongoDB:", error);
+        try {
+            
+            // Handle server response
+            if (response.ok) {
+                const responseData = await response.json(); // Read response body 
+                console.log("Account created successfully");
+                // Redirect the user to index page or seller page based on isSeller value
+                if (isSeller) {
+                    window.location.href = "sellerpage.html";
+                } else {
+                    window.location.href = "index.html";
+                }
+            } else {
+                const responseData = await response.json(); // Read response body 
+                console.error("Error creating account:", responseData.message);
+                // Display error message to the user
+                alert(responseData.message);
+            }
+        } catch (error) {
+            console.error("Error creating account:", error);
+            // Display error message to the user
+            alert("An error occurred. Please try again later.");
         }
-
     }
+
+
     
     // Attach event listeners
     console.log("Attaching event listeners...");

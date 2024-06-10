@@ -113,6 +113,44 @@ app.post('/login', async (req, res) => {
 });
 
 
+let userCount = 6; // Initialize userCount to 6
+
+app.post('/createaccount', async (req, res) => {
+  const { email, password, isSeller } = req.body;
+  let client = await connectToMongo();
+
+  try {
+    let database = client.db('FarmBook');
+    let collection = database.collection('User');
+    let existingUser = await collection.findOne({ email }); // Use email here
+
+    if (existingUser) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+
+    // Increment the userCount for the next user
+    userCount++;
+
+    // Insert the new user into the database with the incremented userCount
+    await collection.insertOne({ userID: userCount, email, password, isSeller });
+    
+    // Respond with a success message
+    res.status(201).json({ message: 'User registered successfully' });
+  } catch (error) {
+    console.error('Error during registration:', error);
+    res.status(500).json({ message: 'An error occurred during registration. Please try again later.' });
+  } finally {
+    // Close the database connection
+    client.close();
+    console.log("close");
+  }
+});
+
+
+
+
+
+
 
 
 // async function run() {

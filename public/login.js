@@ -17,11 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = "createaccount.html";
     }
 
-    function authenticateUser(){
-        console.log("Authenticating...");
-
-    }
-
     // Function to handle login form submission
     async function handleLoginFormSubmission(event) {
         console.log("Login form submitted");
