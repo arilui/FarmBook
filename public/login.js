@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
         try {
             const response = await fetch('/login', {
                 method: 'POST',
-                // mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -39,9 +38,17 @@ document.addEventListener("DOMContentLoaded", function() {
             
             if (response.ok) {
                 const data = await response.json();
-                console.log(data.message);
-                // Redirect to index page after successful login
-                window.location.href = "index.html";
+                console.log("Server response:", data); // Log the server response
+                
+                if (data.isSeller) {
+                    console.log("Redirecting to seller page");
+                    // Redirect to seller page
+                    window.location.href = "sellerpage.html";
+                } else {
+                    console.log("Redirecting to index page");
+                    // Redirect to index page
+                    window.location.href = "index.html";
+                }
             } else {
                 console.error('Login failed:', response.statusText);
                 // Reset form fields
@@ -56,6 +63,9 @@ document.addEventListener("DOMContentLoaded", function() {
             alert('An error occurred during login. Please try again later.');
         }
     }
+    
+    
+    
 
     // Attach event listeners
     document.querySelector(".logo-button").addEventListener("click", redirectToIndexPage);

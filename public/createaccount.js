@@ -38,6 +38,14 @@ document.addEventListener("DOMContentLoaded", function() {
         // Determine the value of isSeller based on the checkbox selection
         var isSeller = document.getElementById("seller").checked;
 
+        // Validate email format using regex
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+        // Display error message if email format is invalid
+        alert("Please enter a valid email address");
+        return; // Exit the function if email format is invalid
+        }
+        
         // Example: Display the form data in the console
         console.log("Email: " + email);
         console.log("Password: " + password);

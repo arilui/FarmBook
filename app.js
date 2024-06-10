@@ -64,7 +64,7 @@ app.get('/products', async(req, res) => {
 })
 
 app.post('/login', async (req, res) => {
-  // Connecting with mongodb
+  // Connecting with MongoDB
   let client = await connectToMongo();
 
   // Extract email and password from the request body
@@ -73,7 +73,6 @@ app.post('/login', async (req, res) => {
   console.log('Username: ' + username);
   console.log('Password: ' + password);
   
-
   try {
     // Connecting with user collection
     let database = client.db('FarmBook');
@@ -81,36 +80,28 @@ app.post('/login', async (req, res) => {
 
     let user = await collection.findOne({email: username});
     
-    
-      // Perform authentication check (e.g., check against database)
-      // Example: You can use MongoDB to check if the email and password match a user document in the database
-
     if (user) {
-          // Respond with a success message if authentication succeeds
+      // Respond with user data including isSeller if authentication succeeds
       if(password === user.password){
-        res.status(200).json({ message: 'Login successful' });
-      
+        res.status(200).json({ message: 'Login successful', isSeller: user.isSeller });
       } else {
         // Respond with an error message if authentication fails
         res.status(401).json({ message: 'Invalid email or password' });
       }
-
-      }else {
-        res.status(401).json({ message: 'User not found' });
-      }
-
-  }catch (error) {
-
+    } else {
+      res.status(401).json({ message: 'User not found' });
+    }
+  } catch (error) {
     // Handle server-side errors
     console.error('Error during login:', error);
     res.status(500).json({ message: 'An error occurred during login. Please try again later.' });
-
   } finally {
-    // Finishing conection with database
+    // Finish connection with database
     client.close();
     console.log("close");
   }
 });
+
 
 
 let userCount = 6; // Initialize userCount to 6
