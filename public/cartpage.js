@@ -8,15 +8,16 @@
  */
 "use strict";
 (function(){
+
     window.addEventListener("load",init);
 
     /**
      * Sets up the necessary buttons and displays the cart page when the webpage loads.
      */
-    function init(){
-        id(farmbook-logo).addEventListener("click", goToHomePage);
-        id(login-button).addEventListener("click", goToLoginPage);
-        id(cart-button).addEventListener("click", refreshPage);
+    function init() {
+        id('farmbook-logo').addEventListener("click", goToHomePage);
+        id('login-button').addEventListener("click", goToLoginPage);
+        id('cart-button').addEventListener("click", refreshPage);
     }
 
     /**
@@ -49,6 +50,6 @@
      */
     function id(idName) {
         return document.getElementById(idName);
-  }
+    }
 
-})
+});
