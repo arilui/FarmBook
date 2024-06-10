@@ -64,9 +64,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     
-    
-    
-
     // Attach event listeners
     document.querySelector(".logo-button").addEventListener("click", redirectToIndexPage);
     document.querySelector(".back-button").addEventListener("click", goBack);

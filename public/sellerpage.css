@@ -136,6 +136,18 @@ html, body {
     margin-left: 30px;
   }
   
+  #product-price{
+    position: relative;
+    margin-top: -365px;
+    margin-left: 30px;
+  }
+
+  #product-description{
+    position: relative;
+    margin-top: -365px;
+    margin-left: 30px;
+ 
+  }
   #save-button{
     position: relative;
     margin-top: 390px;

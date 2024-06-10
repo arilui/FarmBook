@@ -4,8 +4,20 @@
 Work breakdown:
 	>Database and connecting JavaScript, partial index.html JavaScript - Paige
 	>Product page and connecting JavaScript - Hannah
-	>Login/Create Account/Seller HTML page and connecting JavaScript - Mariana
+	>Login/Create Account/Seller page and connecting JavaScript - Mariana
 	>Index page and connected JavaScript - Hawraa
 
 FarmBook is a shopping platform for local businesses to connect with consumers using an order pickup model.
 Created 2024
+
+* To run the application use npm run start
+
+Fazer:
+mudar background color
+mudar botoes 
+mudar logo para mesmo tamanho 
+colocar linha para divisao do header 
+conferir pagina de produtos 
+remover hello world 
+remover dbConnection
+tirar comentarios com usario name e password 

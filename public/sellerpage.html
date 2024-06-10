@@ -18,7 +18,7 @@
       </button>
       <h1 id="store-name">Store Name</h1>
       <input type="text" id="edit-store-name" placeholder="Edit store name">
-      <button type="submit" class="edit-store-name-button">
+      <button type="submit" class="edit-store-name-button" id="edit-store-name-button">
         <img src="images/pen-icon.png" alt="edit-store-name" style="width:18px;height:18px">
       </button>
     </div>
@@ -29,11 +29,9 @@
       <button type="submit" class="login-button">
         <img src="images/login-icon-cropped.png" alt="login" style="width:40px;height:45px">
       </button>
-      <!-- Dropdown for Logout -->
       <div class="dropdown" id="logoutDropdown">
         <button onclick="logout()" class="dropbtn">Logout</button>
         <div id="logoutDropdownContent">
-          <!-- Add any additional content for logout dropdown if needed -->
         </div>
       </div>
     </div>
@@ -51,6 +49,16 @@
     <div>
       <p style="font-size:30px" id="product-name">Register your product:</p>
       <input type="text" id="register-product" placeholder="Product name">
+      <button id="save-button">save</button>
+    </div>
+    <div>
+      <p style="font-size:30px" id="product-price">Unit price:</p>
+      <input type="text" id="product-price" placeholder="Product price">
+      <button id="save-button">save</button>
+    </div>
+    <div>
+      <p style="font-size:30px" id="product-description">Description:</p>
+      <input type="text" id="product-description" placeholder="Grown in Renton, WA">
       <button id="save-button">save</button>
     </div>
   </section>

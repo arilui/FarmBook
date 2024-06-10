@@ -24,9 +24,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Function to handle form submission
-    // Function to handle form submission
-    // Function to handle form submission
-    // Function to handle form submission
     async function handleFormSubmission(event) {
         console.log("Form submitted");
         event.preventDefault(); // Prevent the form from submitting normally
@@ -45,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
         alert("Please enter a valid email address");
         return; // Exit the function if email format is invalid
         }
-        
+
         // Example: Display the form data in the console
         console.log("Email: " + email);
         console.log("Password: " + password);
@@ -85,8 +82,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-
-    
     // Attach event listeners
     console.log("Attaching event listeners...");
     document.querySelector(".logo-button").addEventListener("click", redirectToIndexPage);
