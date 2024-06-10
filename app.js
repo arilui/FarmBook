@@ -68,7 +68,7 @@ app.get('/products/:id', async(req, res) => {
     if (productInfo) {
       res.status(SUCCESS_STATUS_CODE).json({exists: true, productInfo});
     } else {
-      res.status(SUCCESS_STATUS_CODE).json({exists: false});
+      res.status(CLIENT_SIDE_ERROR_STATUS_CODE).json({exists: false});
     }
   } catch (err) {
     res.status(SERVER_SIDE_ERROR_STATUS_CODE).json({message: err.message});

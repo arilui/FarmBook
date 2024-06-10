@@ -43,7 +43,7 @@ The Final Project API provides information about the various products on our web
 ]
 ```
 **Error Handling:**
-- Possible 500 errors (all plain text):
+- Possible 500 errors:
   - If something else goes wrong on the server, returns an error:
     ```json
     {"message": "err.message"}
@@ -78,12 +78,12 @@ The Final Project API provides information about the various products on our web
 ```
 
 **Error Handling:**
-- Possible 400 (invalid request) errors (all plain text):
+- Possible 400 (invalid request) errors:
   - If passed in an invalid product id, returns an error message:
     ```json
     {"exists": false}
     ```
-- Possible 500 errors (all plain text):
+- Possible 500 errors:
   - If something else goes wrong on the server, returns an error message:
     ```json
     {"message": "err.message"}
