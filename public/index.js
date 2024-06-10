@@ -37,6 +37,7 @@ function moveSlide(n, carouselId) {
 
     document.getElementById("home-page").addEventListener('click', goToHomePage);
     document.getElementById("log-in").addEventListener('click', goToLoginPage);
+    document.getElementById("shopping-cart").addEventListener('click',goToCartPage);
   }
 
   // //slide starting index
@@ -135,6 +136,10 @@ function moveSlide(n, carouselId) {
 
   function goToHomePage() {
     window.location.href="index.html";
+  }
+
+  function goToCartPage(){
+    window.location.href = "cartpage.html";
   }
 
   function goToLoginPage() {
