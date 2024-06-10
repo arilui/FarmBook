@@ -1,3 +1,13 @@
+/*
+ * Names: Hannah King and Mariana Pereira
+ * Date: 06.10.2024
+ * Groupmates: Paige Lui and Hawraa Al Hasnawi
+ *
+ * This is the JS to implement the API for the FarmBook website and allows the program to
+ * grab the information needed to display to the users, including all our products and the
+ * details about each individual item. In addition, the API checks whether or not logins/signups
+ * are successful. This also hosts the program on a web server via Node.js.
+ */
 "use strict";
 
 const express = require('express');
@@ -8,13 +18,6 @@ app.use(multer().none());
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-//   next();
-// })
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = "mongodb+srv://dbUser:passw0rd@farmbook.rsj9viv.mongodb.net/?retryWrites=true&w=majority&appName=FarmBook";
@@ -58,12 +61,12 @@ app.get('/products', async(req, res) => {
 })
 
 // returns a JSON of the given product's information
-app.get('/products/:id', async(req, res) => {
+app.get('/productpage.html/product', async(req, res) => {
   let client = await connectToMongo();
   try{
     let database = client.db('FarmBook');
     let collection = database.collection('Product');
-    let id = new ObjectId(req.params);
+    let id = new ObjectId(req.query.id);
     let productInfo = await collection.findOne({_id: id});
     if (productInfo) {
       res.status(SUCCESS_STATUS_CODE).json({exists: true, productInfo});

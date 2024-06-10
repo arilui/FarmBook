@@ -3,7 +3,7 @@
   Date: 06.10.2024
   Groupmates: Paige Lui, Mariana Pereira, and Hawraa Al Hasnawi
 
-  This is the cartpage.css file used to style the cartpage.html file. It applies
+  This is the errorpage.css file used to style the errorpage.html file. It applies
   the same webpage look as the other FarmBook webpages, including a light green and
   orange background and with a navigation bar at the top.
 */
@@ -15,20 +15,6 @@ html {
 header {
   background-color: #DCF9E0;
   height: 150px;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-#nav-left {
-  float: left;
-}
-
-#nav-right {
-  float: right;
 }
 
 body {
@@ -43,20 +29,13 @@ body {
   margin-top: 15px;
 }
 
-#shopping-cart, #login-icon {
-  height: fit-content;
-  margin-top: 15px;
-  margin-right: 15px;
-}
-
 .image-button {
   background: none;
   border: none;
   padding: 0;
 }
 
-#cart-page {
-  display: flex;
-  flex-direction: column;
-  margin: 5%;
+p {
+  text-align: center;
+  font-size: 50px;
 }

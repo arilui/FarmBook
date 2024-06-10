@@ -1,3 +1,13 @@
+/*
+  Name: Hannah King
+  Date: 06.10.2024
+  Groupmates: Paige Lui, Mariana Pereira, and Hawraa Al Hasnawi
+
+  This is the productpage.css file used to style the productpage.html file. It applies
+  the same webpage look as the other FarmBook webpages, including a light green and
+  orange background and with a navigation bar at the top. In the main body of the
+  webpage it display an image of a product and that product information.
+*/
 html {
   height: 100%;
   width: 100%;
@@ -62,7 +72,3 @@ body {
 .flipped {
   transform: rotate(180deg);
 }
-
-/* .hidden {
-  display: none;
-} */

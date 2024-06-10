@@ -1,5 +1,5 @@
-# Final Project API Documentation
-The Final Project API provides information about the various products on our website and handling user logins and transactions.
+# FarmBook API Documentation
+The FarmBook API provides information about the various products on our website and handling user logins.
 
 ## Endpoint 1 - Get All Product Information.
 **Request Format:** `/products`
@@ -51,15 +51,17 @@ The Final Project API provides information about the various products on our web
 
 
 ## Endpoint 2 - Get All Information of a Product.
-**Request Format:** `/products/:id`
+**Request Format:** `/product?id=`
 
 **Request Type:** `GET`
+
+**Query Parameters:** `id` (required)
 
 **Returned Data Format**: JSON
 
 **Description:** Given a valid id of a product, returns a JSON with every detail possible about the given product.
 
-**Example Request:** `/products/665f8b9b6fb1daad7cae7a78`
+**Example Request:** `/productpage.html/product?id=665f8b9b6fb1daad7cae7a78`
 
 **Example Response:**
 ```json
