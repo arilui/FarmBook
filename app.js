@@ -154,6 +154,34 @@ app.post('/createaccount', async (req, res) => {
   }
 });
 
+app.post('/update-store-name', async (req, res) => {
+  try {
+    const { email, newStoreName } = req.body;
+
+    // Connect to MongoDB
+    const client = await connectToMongo();
+    const database = client.db('FarmBook');
+    const collection = database.collection('User');
+
+    // Update the store name for the specified user
+    const result = await collection.updateOne(
+      { email: email },
+      { $set: { storeName: newStoreName } }
+    );
+
+    if (result.modifiedCount === 1) {
+      res.status(SUCCESS_STATUS_CODE).json({ message: 'Store name updated successfully' });
+    } else {
+      res.status(CLIENT_SIDE_ERROR_STATUS_CODE).json({ message: 'User not found or store name not updated' });
+    }
+  } catch (error) {
+    console.error('Error updating store name:', error);
+    res.status(SERVER_SIDE_ERROR_STATUS_CODE).json({ message: 'An error occurred while updating store name' });
+  } finally {
+    client.close();
+    console.log("close");
+  }
+});
 
 
 
