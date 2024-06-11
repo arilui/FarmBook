@@ -12,6 +12,7 @@ body {
   background-color: #DCF9E0;
   padding: 12px 0;
   height: 150px;
+  border-bottom: 3px solid black;
 }
 
 .navigation-board a {

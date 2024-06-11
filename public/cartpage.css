@@ -18,6 +18,7 @@ header {
   background-color: #DCF9E0;
   height: 150px;
   width: 100%;
+  border-bottom: 3px solid black;
 }
 
 nav {
@@ -30,6 +31,14 @@ nav {
 #nav-left, #nav-right {
   display: flex;
   align-items: center;
+}
+
+#nav-left tr:hover{
+  background-color: #9decd4;
+}
+
+#nav-right tr:hover{
+  background-color: #9decd4;
 }
 
 body {
