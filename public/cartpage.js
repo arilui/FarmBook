@@ -1,23 +1,18 @@
-/*
- * Name: Hannah King
- * Date: 06.10.2024
- * Groupmates: Paige Lui, Mariana Pereira, and Hawraa Al Hasnawi
- *
- * This is the JS to implement the UI for the our cart page which allows the
- * user to view the items in their cart.
- */
 "use strict";
 (function(){
-
-    window.addEventListener("load",init);
+    window.addEventListener('load', init);
 
     /**
      * Sets up the necessary buttons and displays the cart page when the webpage loads.
      */
-    function init() {
-        id('farmbook-logo').addEventListener("click", goToHomePage);
-        id('login-button').addEventListener("click", goToLoginPage);
-        id('cart-button').addEventListener("click", refreshPage);
+    function init(){
+        id('farmbook-logo').addEventListener('click', goToHomePage);
+        id('login-icon').addEventListener('click', function(event) {
+            event.stopPropagation(); 
+            id("logoutDropdown").classList.toggle("show");
+        });
+        id('shopping-cart').addEventListener('click', refreshPage);
+        displayCartItems();
     }
 
     /**
@@ -41,6 +36,27 @@
         window.location.href = "cartpage.html";
     }
 
+    /**
+     * Displays the cart items in the table.
+     */
+    function displayCartItems() {
+        let cartItems = [
+            {name: "Tomatos", quantity: 1, price: 3}
+        ]; 
+
+        let tbody = id('cart-items').querySelector('tbody');
+        cartItems.forEach(item => {
+            let row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>${item.quantity}</td>
+                <td>$${item.price}</td>
+                <td>$${item.quantity * item.price}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
     /** ------------------------------ Helper Functions  ------------------------------ */
 
     /**
@@ -52,4 +68,10 @@
         return document.getElementById(idName);
     }
 
-});
+    // Define the logout function globally
+    window.logout = function() {
+        console.log("Logging out...");
+        // Redirect the user to the login page
+        window.location.href = "login.html";
+    }
+})();

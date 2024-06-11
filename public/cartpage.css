@@ -1,34 +1,35 @@
 /*
-  Name: Hannah King
+  Name: Hannah King and Paige Lui
   Date: 06.10.2024
-  Groupmates: Paige Lui, Mariana Pereira, and Hawraa Al Hasnawi
+  Groupmates: Mariana Pereira and Hawraa Al Hasnawi
 
   This is the cartpage.css file used to style the cartpage.html file. It applies
   the same webpage look as the other FarmBook webpages, including a light green and
   orange background and with a navigation bar at the top.
 */
-html {
+html, body {
   height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 header {
   background-color: #DCF9E0;
   height: 150px;
+  width: 100%;
 }
 
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 10px;
 }
 
-#nav-left {
-  float: left;
-}
-
-#nav-right {
-  float: right;
+#nav-left, #nav-right {
+  display: flex;
+  align-items: center;
 }
 
 body {
@@ -49,6 +50,7 @@ body {
   margin-right: 15px;
 }
 
+
 .image-button {
   background: none;
   border: none;
@@ -59,4 +61,35 @@ body {
   display: flex;
   flex-direction: column;
   margin: 5%;
+}
+
+#cart-items {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#cart-items th, #cart-items td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#cart-items th {
+  background-color: #DCF9E0;
+  text-align: left;
+}
+
+#cart-items tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#cart-items tr:hover {
+  background-color: #ddd;
+}
+
+.dropdown {
+  display: none;
+}
+
+.dropdown.show {
+  display: block;
 }
