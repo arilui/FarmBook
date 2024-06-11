@@ -28,16 +28,21 @@ body {
 /*makes the navigation logos small*/
 #log-in,
 #shopping-cart {
-  width: 100px;
-  padding: 10px 0px;
-  border:none;
+  position: relative;
+  margin-top: 50px;
+  right: 40px;
+ 
   
+}
+#shopping-cart{
+  margin-right: 20px;
 }
 
 #home-page {
-  width: 200px;
+  width: 300px;
   padding: 20px 50px;
   border:none; 
+  margin-left: -40px;
 }
 
 .Search {
