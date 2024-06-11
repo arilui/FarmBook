@@ -68,10 +68,8 @@
         return document.getElementById(idName);
     }
 
-    // Define the logout function globally
     window.logout = function() {
         console.log("Logging out...");
-        // Redirect the user to the login page
         window.location.href = "login.html";
     }
 })();
