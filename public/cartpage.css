@@ -33,12 +33,11 @@ nav {
   align-items: center;
 }
 
-#nav-left tr:hover{
-  background-color: #9decd4;
+#nav-left button:hover{
+  background-color: #9DECD9;
 }
-
-#nav-right tr:hover{
-  background-color: #9decd4;
+#nav-right button:hover{
+  background-color: #9DECD9;
 }
 
 body {
@@ -51,6 +50,10 @@ body {
   margin-right: 5px;
   margin-bottom: 5px;
   margin-top: 15px;
+}
+
+#farmbook-logo img:hover{
+  background-color: #9DECD9;
 }
 
 #shopping-cart, #login-button {
