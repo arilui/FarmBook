@@ -12,8 +12,9 @@ Created 2024
 
 * To run the application use npm run start
 
-Fazer:
-mudar background color
-mudar botoes 
-mudar logo para mesmo tamanho 
+*Future features 
+- User authentication
+- Settings 
+- Seller analitytics 
+- Edit profile options as delete account, change username, change password ,etc..
 
