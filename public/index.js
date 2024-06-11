@@ -48,13 +48,7 @@ function moveSlide(n, carouselId) {
     document.getElementById("shopping-cart").addEventListener('click',goToCartPage);
   }
 
-  // //slide starting index
-  // let slideIndex = {
-  //   'carousel-1':0,
-  //   'carousel-2':0,
-  //   'carousel-3':0
-  //   };
-
+ 
   async function go() {
     try {
 
@@ -87,10 +81,9 @@ function moveSlide(n, carouselId) {
     console.log("productItem.id = " + productId); //delete
 
     const productLink = document.createElement('a');
-    // productLink.id = product._id;
-    // productLink.addEventListener("click", switchToProduct(productId));
+    
     productLink.href = "productpage.html?id=" + productId;
-    //productLink.href = "https://www.w3schools.com"; // Replace with actual product link if available
+    
 
     const productImage = document.createElement('img');
     productImage.classList.add('product-image');
@@ -118,24 +111,7 @@ function moveSlide(n, carouselId) {
     return productItem;
   }
 
-  // //function that deales with the carousel slid
-  // function moveSlide(n, carouselId) {
-  //   const carousel = document.getElementById(carouselId);
-  //   const slideContainer = carousel.querySelector('.carousel-slide');
-  //   const slides = carousel.getElementsByClassName('product-item');
-  //   const visibleSlides = Math.floor(carousel.offsetWidth / slides[0].offsetWidth);
-
-  //   slideIndex[carouselId] += n * visibleSlides;
-
-  //   if (slideIndex[carouselId] >= slides.length) {
-  //     slideIndex[carouselId] = 0;
-  //   } else if (slideIndex[carouselId] < 0) {
-  //     slideIndex[carouselId] = slides.length - visibleSlides;
-  //   }
-
-  //   slideContainer.style.transform = `translateX(${-slideIndex[carouselId] * slides[0].offsetWidth}px)`;
-  // }
-
+ 
   function initializeCarousels() {
     moveSlide(0, 'carousel-1');
     moveSlide(0, 'carousel-2');
@@ -153,18 +129,5 @@ function moveSlide(n, carouselId) {
   function goToLoginPage() {
     window.location.href="login.html";
   }
-
-//naviaget pages
-// document.getElementById("home-page").addEventListener('click',function(){
-//   window.location.href="index.html";
-// });
-//naviaget pages
-// document.getElementById("log-in").addEventListener('click',function(){
-//   window.location.href="login.html";
-// });
-//naviaget pages
-// document.getElementById("product-image").addEventListener('click',function(){
-//   window.location.href="index.html";
-// });
 
 })();
