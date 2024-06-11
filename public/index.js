@@ -4,7 +4,7 @@
  * Groupmates: Paige Lui, Mariana Pereira, and Hannah King
  *
  * This is the JS to implement the UI for the main page, Index.html and associated functions,
- * including interacting with the API in app.js to pull the product catalog from the database. 
+ * including interacting with the API in app.js to pull the product catalog from the database.
 */
 "use strict";
 //slide starting index
@@ -48,23 +48,18 @@ function moveSlide(n, carouselId) {
     document.getElementById("shopping-cart").addEventListener('click',goToCartPage);
   }
 
- 
+
   async function go() {
     try {
 
       const response = await fetch('/products');
       const products = await response.json();
 
-      //const carousel1Slide = document.getElementById('carousel-1-slide');
-      //const carousel2Slide = document.getElementById('carousel-2-slide');
       const carousel3Slide = document.getElementById('carousel-3-slide');
 
       products.forEach(product => {
         const productItem = createProductItem(product);
         carousel3Slide.appendChild(productItem);
-
-        //const productItemClone = productItem.cloneNode(true);
-        //carousel2Slide.appendChild(productItemClone);
       });
 
       initializeCarousels();
@@ -78,12 +73,11 @@ function moveSlide(n, carouselId) {
     productItem.classList.add('product-item');
 
     let productId = product._id + "";
-    console.log("productItem.id = " + productId); //delete
 
     const productLink = document.createElement('a');
-    
+
     productLink.href = "productpage.html?id=" + productId;
-    
+
 
     const productImage = document.createElement('img');
     productImage.classList.add('product-image');
@@ -111,7 +105,7 @@ function moveSlide(n, carouselId) {
     return productItem;
   }
 
- 
+
   function initializeCarousels() {
     moveSlide(0, 'carousel-1');
     moveSlide(0, 'carousel-2');
