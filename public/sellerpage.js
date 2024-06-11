@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to redirect to index page when logo button is clicked
     function redirectToSellerPage() {
-        console.log("Redirecting to seller page...");
-        window.location.href = "sellerpage.html";
+        console.log("Redirecting to index page...");
+        window.location.href = "index.html";
     }
 
     // Attach event listener to the logo button
