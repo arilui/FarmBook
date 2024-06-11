@@ -1,0 +1,59 @@
+{
+    "_id" : ObjectId("665f8b9b6fb1daad7cae7a78"),
+    "pid" : NumberInt(2),
+    "name" : "Tomatos",
+    "Shortname" : "tomato",
+    "price" : NumberInt(3),
+    "description" : "Grown in Redmond, WA",
+    "image" : "images/tomatoes.jpeg"
+}
+{
+    "_id" : ObjectId("665f8b9b6fb1daad7cae7a79"),
+    "pid" : NumberInt(3),
+    "name" : "Cucumbers",
+    "Shortname" : "cucumber",
+    "price" : NumberInt(2),
+    "description" : "Grown in Redmond, WA",
+    "image" : "images/cucumber.jpg"
+}
+{
+    "_id" : ObjectId("665f8b9b6fb1daad7cae7a7a"),
+    "pid" : NumberInt(4),
+    "name" : "Potatos",
+    "Shortname" : "potato",
+    "price" : 1.0,
+    "description" : "Grown in Redmond, WA",
+    "image" : "images/potatos.jpg"
+}
+{
+    "_id" : ObjectId("665f8b9b6fb1daad7cae7a7b"),
+    "pid" : NumberInt(5),
+    "name" : "Okra",
+    "Shortname" : "okra",
+    "price" : NumberInt(4),
+    "description" : "Grown in Redmond, WA",
+    "image" : "images/okra.jpg"
+}
+{
+    "_id" : ObjectId("665f8c446fb1daad7cae7a7c"),
+    "pid" : NumberInt(1),
+    "name" : "Carrots",
+    "Shortname" : "carrot",
+    "price" : NumberInt(2),
+    "description" : "Grown in Redmond, WA",
+    "image" : "images/carrots.jpeg"
+}
+{
+    "_id" : ObjectId("6667cd609df5036fc26444b2"),
+    "name" : "Candle",
+    "price" : "4.00",
+    "description" : "Made in Bellevue, WA",
+    "image" : "images/green-candle.png"
+}
+{
+    "_id" : ObjectId("6667d0dc71e735eccbde2813"),
+    "name" : "banana",
+    "price" : "3",
+    "description" : "bellevue",
+    "image" : "images/no-available-image.png"
+}

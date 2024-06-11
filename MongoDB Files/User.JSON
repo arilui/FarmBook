@@ -1,0 +1,55 @@
+{
+    "_id" : ObjectId("665f609a38a17a3d2c50da1e"),
+    "email" : "johndoe@gmail.com",
+    "password" : "p4ssword",
+    "isSeller" : false,
+    "storeName" : ""
+}
+{
+    "_id" : ObjectId("665f609a38a17a3d2c50da1f"),
+    "email" : "janedoe@aol.com",
+    "password" : "passw0rd",
+    "isSeller" : true,
+    "storeName" : "Orchard Farm"
+}
+{
+    "_id" : ObjectId("665f612b38a17a3d2c50da20"),
+    "email" : "mikesmith@yahoo.com",
+    "password" : "m1k3sm1th",
+    "isSeller" : false,
+    "storeName" : ""
+}
+{
+    "_id" : ObjectId("665f612b38a17a3d2c50da21"),
+    "email" : "emilyjones@hotmail.com",
+    "password" : "em1lyj0n3s",
+    "isSeller" : true,
+    "storeName" : "Lavender Farm"
+}
+{
+    "_id" : ObjectId("665f612b38a17a3d2c50da22"),
+    "email" : "william.brown@outlook.com",
+    "password" : "w1llbr0wn",
+    "isSeller" : false,
+    "storeName" : ""
+}
+{
+    "_id" : ObjectId("665f612b38a17a3d2c50da23"),
+    "email" : "oliviagreen@gmail.com",
+    "password" : "0l1v1agr33n",
+    "isSeller" : true,
+    "storeName" : "Lily Farm"
+}
+{
+    "_id" : ObjectId("6666ab63baa3602e692c6f0d"),
+    "email" : "ginger@gmail.com",
+    "password" : "pepperoni",
+    "isSeller" : false
+}
+{
+    "_id" : ObjectId("66676d161a8fed594f61c07f"),
+    "email" : "plui0212@gmail.com",
+    "password" : "password",
+    "isSeller" : true,
+    "storeName" : "Example Farm"
+}
