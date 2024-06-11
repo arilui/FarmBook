@@ -68,43 +68,43 @@ document.addEventListener("DOMContentLoaded", function() {
     
         displayStoreName();
 
-        // Function to handle the submission of new product data
-        async function handleProductRegistration(event) {
+           // Function to handle the submission of new product data
+           async function handleProductRegistration(event) {
             event.preventDefault(); // Prevent the form from submitting normally
-    
+        
             // Retrieve product data from the form fields
             var productName = document.getElementById("product-name").value;
             var productPrice = document.getElementById("product-price").value;
             var productDescription = document.getElementById("product-description").value;
-    
+        
             // Send the new product data to the server
             try {
-                const response = await fetch('/createproducts', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ productName, productPrice, productDescription })
-                });
-    
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log("Server response:", data);
-                    alert('Product registered successfully.');
-                    // Clear the form fields after successful submission
-                    document.getElementById("product-name").value = "";
-                    document.getElementById("product-price").value = "";
-                    document.getElementById("product-description").value = "";
-                } else {
-                    console.error('Product registration failed:', response.statusText);
-                    alert('Product registration failed. Please try again.');
-                }
+              const response = await fetch('/createproduct', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: productName, price: productPrice, description: productDescription })
+              });
+        
+              if (response.ok) {
+                const data = await response.json();
+                console.log("Server response:", data);
+                alert('Product registered successfully.');
+                // Clear the form fields after successful submission
+                document.getElementById("product-name").value = "";
+                document.getElementById("product-price").value = "";
+                document.getElementById("product-description").value = "";
+              } else {
+                console.error('Product registration failed:', response.statusText);
+                alert('Product registration failed. Please try again.');
+              }
             } catch (error) {
-                console.error('Error during product registration:', error);
-                alert('An error occurred during product registration. Please try again later.');
+              console.error('Error during product registration:', error);
+              alert('An error occurred during product registration. Please try again later.');
             }
-        }
-    
-        // Attach event listener to the form for product registration
-        document.getElementById("product-registration-form").addEventListener("submit", handleProductRegistration);
-});
+          }
+        
+          // Attach event listener to the form for product registration
+          document.getElementById("product-registration-form").addEventListener("submit", handleProductRegistration);
+        });

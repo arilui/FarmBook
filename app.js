@@ -159,30 +159,36 @@ app.post('/createproduct', async (req, res) => {
   let client = await connectToMongo();
 
   // Extract product data from the request body
-  const { productName, productPrice, productDescription } = req.body;
+  const { name: productName, price: productPrice, description: productDescription } = req.body;
 
   try {
+    console.log('Request Body:', req.body); // Log the request body to check the extracted product data
+    
     // Access the "products" collection
     let database = client.db('FarmBook');
     let collection = database.collection('Product');
+
+    // Check if the product already exists in the database
+    let existingProduct = await collection.findOne({ productName });
 
     if (existingProduct) {
       return res.status(400).json({ message: 'Product already exists' });
     }
 
-
-    // Insert the new user into the database with the incremented userCount
-    await collection.insertOne({ productName, productPrice, productDescription });
+    // Insert the new product into the database
+    //no image graphic by HideMaru, available at: https://www.freepik.com/search
+    const result = await collection.insertOne({name: productName, price: productPrice, description: productDescription, image: "images/no-available-image.png"});
+    console.log('Database Insert Result:', result); // Log the result of the database operation
 
     // Respond with a success message
     res.status(201).json({ message: 'Product registered successfully' });
   } catch (error) {
-    console.error('Error during registration:', error);
-    res.status(500).json({ message: 'An error occurred during registration. Please try again later.' });
+    console.error('Error during product registration:', error); // Log any errors that occur
+    res.status(500).json({ message: 'An error occurred during product registration. Please try again later.' });
   } finally {
     // Close the database connection
     client.close();
-    console.log("close");
+    console.log("Database connection closed");
   }
 });
 // async function run() {

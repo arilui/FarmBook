@@ -46,12 +46,16 @@
   <hr class="solid">
   <div id="product-registration">
     <p style="font-size:30px">Register your product:</p>
-    <input type="text" id="product-name" placeholder="Product name" required>
+    <form id="product-registration-form">
+    <p style="font-size:30px">Register your product:</p>
+    <input type="text" id="product-name" name="name" placeholder="Product name" required>
     <p style="font-size:30px">Unit price:</p>
-    <input type="text" id="product-price" placeholder="Product price" required>
+    <input type="text" id="product-price" name="price" placeholder="Product price" required>
     <p style="font-size:30px">Description:</p>
-    <input type="text" id="product-description" placeholder="Grown in Renton, WA" required>
-    <button id="save-button">Save Product</button>
+    <input type="text" id="product-description" name="description" placeholder="Grown in Renton, WA" required>
+    <button type="submit" id="save-button">Save Product</button>
+</form>
+
   </div>
   </section>
 
