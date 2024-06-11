@@ -40,7 +40,6 @@ async function connectToMongo() {
     }
   });
   await client.connect();
-  console.log("connected");
   return client;
 }
 
@@ -56,7 +55,6 @@ app.get('/products', async(req, res) => {
     res.status(SERVER_SIDE_ERROR_STATUS_CODE).json({message: err.message});
   } finally {
     client.close();
-    console.log("close");
   }
 })
 
@@ -125,7 +123,7 @@ app.post('/login', async (req, res) => {
 let userCount = 6; // Initialize userCount to 6
 // adds the given new user's information to the database
 app.post('/createaccount', async (req, res) => {
-  
+
   let client = await connectToMongo();
   const { email, password, isSeller } = req.body;
 
@@ -163,7 +161,7 @@ app.post('/createproduct', async (req, res) => {
 
   try {
     console.log('Request Body:', req.body); // Log the request body to check the extracted product data
-    
+
     // Access the "products" collection
     let database = client.db('FarmBook');
     let collection = database.collection('Product');
@@ -191,19 +189,6 @@ app.post('/createproduct', async (req, res) => {
     console.log("Database connection closed");
   }
 });
-// async function run() {
-//   try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-//     // Send a ping to confirm a successful connection
-//     await client.db("admin").command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
-//   }
-// }
-// run().catch(console.dir);
 
 app.use(express.static('public'));
 const PORT = process.env.PORT || 8000;

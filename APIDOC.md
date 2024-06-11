@@ -51,7 +51,7 @@ The FarmBook API provides information about the various products on our website 
 
 
 ## Endpoint 2 - Get All Information of a Product.
-**Request Format:** `/product?id=`
+**Request Format:** `/productpage.html/product`
 
 **Request Type:** `GET`
 
@@ -101,13 +101,14 @@ The FarmBook API provides information about the various products on our website 
 
 **Description:** Given a valid `username` and `password`, returns a JSON message response to indicate that the user has been logged in and if they are a seller or not.
 
-**Example Request:** `/login` with POST parameters of `username=johndoe@gmail.com`, and `p4ssword`.
+**Example Request:** `/login` with POST parameters of `username=johndoe@gmail.com`, and `password=p4ssword`.
 
 **Example Response:**
 ```json
 {
   "message": "Login successful",
-  "isSeller": false
+  "isSeller": false,
+  "storeName": ""
 }
 ```
 
@@ -150,5 +151,41 @@ The FarmBook API provides information about the various products on our website 
 - Possible 500 error:
   - If something else goes wrong on the server, returns an error with the message:
     ```json
-    {"message": "An error occurred during registration. Please try again later."}
+    {
+      "message": "An error occurred during registration. Please try again later."
+    }
+    ```
+
+## Endpoint 5 - Creates new product to be added to the database.
+**Request Format:** `/createproduct` endpoint with POST parameters of `name`, `price`, and `description`.
+
+**Request Type**: `POST`
+
+**Returned Data Format**: JSON
+
+**Description:** Given a valid `name`, `price` and `description` value, returns a JSON response message to indicate that the call to the database went through and created the new product in the database.
+
+**Example Request:** `/createproduct` with POST parameters of `name=banana`, `price=3`, and `description=bellevue`.
+
+**Example Response:**
+```json
+{
+  "message": "Product registered successfully"
+}
+```
+
+**Error Handling:**
+- Possible 400 error:
+  - If passed a product that already exists in the database, an error is returned with the message:
+    ```json
+    {
+      "message": "Product already exists"
+    }
+    ```
+- Possible 500 error:
+  - If something else goes wrong on the server, returns an error with the message:
+    ```json
+    {
+      "message": "An error occurred during product registration. Please try again later."
+    }
     ```
