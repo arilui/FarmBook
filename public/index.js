@@ -1,3 +1,11 @@
+/*
+ * Name: Hawraa Al Hasnawi
+ * Date: 06.10.2024
+ * Groupmates: Paige Lui, Mariana Pereira, and Hannah King
+ *
+ * This is the JS to implement the UI for the main page, Index.html and associated functions,
+ * including interacting with the API in app.js to pull the product catalog from the database. 
+*/
 "use strict";
 //slide starting index
 let slideIndex = {
