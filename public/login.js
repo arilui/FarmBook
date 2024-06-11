@@ -38,12 +38,12 @@ document.addEventListener("DOMContentLoaded", function() {
             
             if (response.ok) {
                 const data = await response.json();
-                console.log("Server response:", data); // Log the server response
+                console.log("Server response:", data); 
                 
                 if (data.isSeller) {
                     console.log("Redirecting to seller page");
                     // Redirect to seller page
-                    window.location.href = "sellerpage.html";
+                    window.location.href = `sellerpage.html?storeName=${encodeURIComponent(data.storeName)}`;
                 } else {
                     console.log("Redirecting to index page");
                     // Redirect to index page

@@ -25,30 +25,86 @@ document.addEventListener("DOMContentLoaded", function() {
     // Function to handle click event on edit store name button
     document.getElementById("edit-store-name-button").addEventListener("click", function() {
         // Get the new store name from the input field
-        var newStoreName = document.getElementById("new-store-name-input").value;
-        var userEmail = "user@example.com"; // Replace with the logged-in user's email
-
-        // Send an AJAX request to the server to update the store name
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/update-store-name", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // Store name successfully updated
-                    console.log("Store name updated successfully");
-                    alert("Store name updated successfully");
-                    // Optionally, update the UI to reflect the change
-                    document.getElementById("store-name-display").innerText = newStoreName;
-                } else {
-                    // Error occurred while updating store name
-                    console.error("Error updating store name:", xhr.responseText);
-                    alert("Error updating store name. Please try again.");
-                }
-            }
-        };
+        var newStoreName = document.getElementById("edit-store-name").value;
         
-        // Send the user email and new store name in the request body
-        xhr.send(JSON.stringify({ email: userEmail, newStoreName: newStoreName }));
+        // Update the store name with the new store name
+        document.getElementById("store-name").innerText = newStoreName;
+        document.getElementById("edit-store-name").value = "";
     });
+
+    // Fetch store name of the logged-in seller and update the DOM
+    fetch(`/login`) // Assuming the server responds with the store name upon successful login
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Response data:', data); // Log the response data to check if it contains the store name
+        const storeName = data.storeName;
+        
+        // Update the DOM with the fetched store name
+        var storeNameElement = document.getElementById("store-name");
+        if (storeNameElement) { // Check if the element exists before updating
+            storeNameElement.innerText = storeName;
+        } else {
+            console.error("Store name element not found");
+        }
+    })
+    .catch(error => console.error('Error fetching store name:', error));
+    
+            function getUrlParameter(name) {
+            name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+    
+        function displayStoreName() {
+            var storeName = getUrlParameter('storeName');
+            document.getElementById("store-name").innerText = storeName;
+        }
+    
+        displayStoreName();
+
+        // Function to handle the submission of new product data
+        async function handleProductRegistration(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+    
+            // Retrieve product data from the form fields
+            var productName = document.getElementById("product-name").value;
+            var productPrice = document.getElementById("product-price").value;
+            var productDescription = document.getElementById("product-description").value;
+    
+            // Send the new product data to the server
+            try {
+                const response = await fetch('/createproducts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ productName, productPrice, productDescription })
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log("Server response:", data);
+                    alert('Product registered successfully.');
+                    // Clear the form fields after successful submission
+                    document.getElementById("product-name").value = "";
+                    document.getElementById("product-price").value = "";
+                    document.getElementById("product-description").value = "";
+                } else {
+                    console.error('Product registration failed:', response.statusText);
+                    alert('Product registration failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error during product registration:', error);
+                alert('An error occurred during product registration. Please try again later.');
+            }
+        }
+    
+        // Attach event listener to the form for product registration
+        document.getElementById("product-registration-form").addEventListener("submit", handleProductRegistration);
 });

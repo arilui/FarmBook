@@ -100,9 +100,10 @@ app.post('/login', async (req, res) => {
     let user = await collection.findOne({email: username});
 
     if (user) {
-      // Respond with user data including isSeller if authentication succeeds
-      if(password === user.password){
-        res.status(200).json({ message: 'Login successful', isSeller: user.isSeller });
+      // Respond with user data including isSeller and storeName if authentication succeeds
+      if (password === user.password) {
+        let storeName = user.storeName || '';
+        res.status(200).json({ message: 'Login successful', isSeller: user.isSeller, storeName: storeName });
       } else {
         // Respond with an error message if authentication fails
         res.status(401).json({ message: 'Invalid email or password' });
@@ -124,8 +125,9 @@ app.post('/login', async (req, res) => {
 let userCount = 6; // Initialize userCount to 6
 // adds the given new user's information to the database
 app.post('/createaccount', async (req, res) => {
-  const { email, password, isSeller } = req.body;
+  
   let client = await connectToMongo();
+  const { email, password, isSeller } = req.body;
 
   try {
     let database = client.db('FarmBook');
@@ -136,11 +138,9 @@ app.post('/createaccount', async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Increment the userCount for the next user
-    userCount++;
 
     // Insert the new user into the database with the incremented userCount
-    await collection.insertOne({ userID: userCount, email, password, isSeller });
+    await collection.insertOne({ email, password, isSeller, storeName });
 
     // Respond with a success message
     res.status(201).json({ message: 'User registered successfully' });
@@ -154,41 +154,37 @@ app.post('/createaccount', async (req, res) => {
   }
 });
 
-app.post('/update-store-name', async (req, res) => {
+app.post('/createproduct', async (req, res) => {
+  // Connect to the MongoDB database
+  let client = await connectToMongo();
+
+  // Extract product data from the request body
+  const { productName, productPrice, productDescription } = req.body;
+
   try {
-    const { email, newStoreName } = req.body;
+    // Access the "products" collection
+    let database = client.db('FarmBook');
+    let collection = database.collection('Product');
 
-    // Connect to MongoDB
-    const client = await connectToMongo();
-    const database = client.db('FarmBook');
-    const collection = database.collection('User');
-
-    // Update the store name for the specified user
-    const result = await collection.updateOne(
-      { email: email },
-      { $set: { storeName: newStoreName } }
-    );
-
-    if (result.modifiedCount === 1) {
-      res.status(SUCCESS_STATUS_CODE).json({ message: 'Store name updated successfully' });
-    } else {
-      res.status(CLIENT_SIDE_ERROR_STATUS_CODE).json({ message: 'User not found or store name not updated' });
+    if (existingProduct) {
+      return res.status(400).json({ message: 'Product already exists' });
     }
+
+
+    // Insert the new user into the database with the incremented userCount
+    await collection.insertOne({ productName, productPrice, productDescription });
+
+    // Respond with a success message
+    res.status(201).json({ message: 'Product registered successfully' });
   } catch (error) {
-    console.error('Error updating store name:', error);
-    res.status(SERVER_SIDE_ERROR_STATUS_CODE).json({ message: 'An error occurred while updating store name' });
+    console.error('Error during registration:', error);
+    res.status(500).json({ message: 'An error occurred during registration. Please try again later.' });
   } finally {
+    // Close the database connection
     client.close();
     console.log("close");
   }
 });
-
-
-
-
-
-
-
 // async function run() {
 //   try {
 //     // Connect the client to the server	(optional starting in v4.7)
